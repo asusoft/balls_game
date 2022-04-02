@@ -1,70 +1,102 @@
 package BallsGame;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import org.jetbrains.annotations.NotNull;
 
 
 public class Cell {
+    /*------------------------ Neighbor cell implementation --------------------------------------------------*/
+    //Neighbor cell
+    private Map<Direction, Cell> neighbors = new HashMap<>();
 
-    /**
-     * Ball
-     */
-    private Ball ball;
+    //Get the neighbor
+    public Cell getNeighbor(Direction dir)
+    {
+        if (dir == null)
+            return null;
 
-    public Ball getBall() {
-        return ball;
+        return neighbors.get(dir);
     }
 
-    public Ball removeBall() {
-        var tmp = ball;
-        ball = null;
-        return tmp;
-    }
-
-    public void putBall(Ball ball) {
-        if(!isEmpty()) throw new IllegalArgumentException("Cell is not empty");
-
-        ball.setCell(this);
-        this.ball = ball;
-    }
-
-    /**
-     * Neighbor
-     */
-
-    private Map<Direction, Cell> neighborCells = new EnumMap<>(Direction.class);
-
-    public Cell neighborCell(@NotNull Direction direction) {
-        return neighborCells.get(direction);
-    }
-
-    void setNeighbor(@NotNull Cell cell, @NotNull Direction direction) {
-        if(neighborCells.containsKey(direction) && neighborCells.containsValue(cell)) return;
-        if(neighborCells.containsKey(direction)) throw new IllegalArgumentException();
-        neighborCells.put(direction, cell);
-        if(cell.neighborCell(direction.getOppositeDirection()) == null) {
-            cell.setNeighbor(this, direction.getOppositeDirection());
+    //Set the neighbor
+    void setNeighbor(Cell neighbor, Direction dir)
+    {
+        if (neighbors.putIfAbsent(dir, neighbor) != null  || dir == null || neighbor == null)
+        {
+            throw new IllegalStateException();
         }
-    }
 
-    public Direction isNeighbor(@NotNull Cell cell) {
-        for(var i : neighborCells.entrySet()) {
-            if(i.getValue().equals(cell)) return i.getKey();
+        if (neighbor.getNeighbor(dir.getOppositeDirection()) == null)
+        {
+            neighbor.setNeighbor(this, dir.getOppositeDirection());
         }
-        return null;
     }
 
     public boolean isEmpty(){
-        if(getBall() != null){
+        if(getBall() == null){
             return true;
         } else{
             return  false;
         }
     }
 
+    /* ----------------- Ball ownership ------------------ */
+
+    private Ball storedBall = null; //ball in a cell
+
+    //Set ball
+    void setBall(Ball ball)
+    {
+        if (ball == null || (ball.getCurrentCell() != null && ball.getCurrentCell() != this)
+                || storedBall != null)
+        {
+            throw new IllegalArgumentException("Illegal ball!");
+        }
+
+        storedBall = ball;
+
+        if (ball.getCurrentCell() == null)
+        {
+            ball.putInCell(this);
+        }
+    }
+
+    //Remove ball from cell
+    void removeBall()
+    {
+        if (storedBall != null)
+        {
+            Ball ball = storedBall;
+
+            storedBall = null;
+            if(ball.getCurrentCell() == this){
+                ball.removeFromCell();
+            }
+        }
+    }
+
+    //Get ball stored in the cell
+    public Ball getBall()
+    {
+        return storedBall;
+    }
+
+    /* --------------------------- Cell position ------------------------------ */
+    private final CellPosition currentPosition;
+
+    public CellPosition CurrentPosition() {return currentPosition;}
+
+    Cell(CellPosition cellPosition)
+    {
+        if (cellPosition == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        currentPosition = cellPosition;
+    }
+
 }
+
