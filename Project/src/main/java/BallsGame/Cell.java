@@ -66,14 +66,15 @@ public class Cell {
     //Remove ball from cell
     void removeBall()
     {
-        if (storedBall != null)
-        {
-            Ball ball = storedBall;
+        if (storedBall == null) {
+            throw new IllegalArgumentException("There is no ball to remove from cell!");
+        }
 
-            storedBall = null;
-            if(ball.getCurrentCell() == this){
-                ball.removeFromCell();
-            }
+        Ball ball = storedBall;
+
+        storedBall = null;
+        if(ball.getCurrentCell() == this){
+            ball.removeFromCell();
         }
     }
 

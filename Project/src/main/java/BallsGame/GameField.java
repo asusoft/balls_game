@@ -12,12 +12,13 @@ public class GameField {
 
     GameField (){
         createCells();
-        fillCells();
+        //fillCells();
     }
 
     /* --------------------- Size --------------------------- */
     private final int height = 20;
     private final int width = 10;
+    private int score;
 
     public int getScore() {
         return score;
@@ -27,7 +28,7 @@ public class GameField {
         this.score = score;
     }
 
-    private int score;
+
 
     //Get width
     public int Width() {
@@ -63,26 +64,26 @@ public class GameField {
     //Create cells
     private void createCells()
     {
-        for (int i = 0; i < height; ++i)
+        for (int row = 0; row < height; ++row)
         {
-            for (int j = 0; j < width; ++j)
+            for (int column = 0; column < width; ++column)
             {
-                CellPosition pos = new CellPosition(j, i);
+                CellPosition pos = new CellPosition(column, row);
 
                 Cell cell = new Cell(pos);
 
                 cells.put(cell.CurrentPosition(), cell);
 
-                if (i > 0)
+                if (row > 0)
                 {
-                    Cell neighbour = getCell(j, i - 1);
+                    Cell neighbour = getCell(column, row - 1);
 
                     cell.setNeighbor(neighbour, Direction.NORTH);
                 }
 
-                if (j > 0)
+                if (column > 0)
                 {
-                    Cell neighbour = getCell(j - 1, i);
+                    Cell neighbour = getCell(column - 1, row);
 
                     cell.setNeighbor(neighbour, Direction.WEST);
                 }
@@ -90,8 +91,8 @@ public class GameField {
         }
     }
 
-    private boolean fillCells () {
-        for (int row = 0; row < 5; row++) {
+    public boolean fillCells () {
+        for (int row = 5; row < height; row++) {
             createNewLine (row);
         }
         return true;
@@ -102,18 +103,18 @@ public class GameField {
         Random random = new Random();
         Color colors[] = { Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE };
 
-        for(int column = 0; column < 10; column++) {
+        for(int column = 0; column < width; column++) {
 
             int colorSelector = random.nextInt(colors.length);
 
-            Cell cell = getCell(row, column);
+            Cell cell = getCell(column, row);
 
             if(cell.isEmpty()){
                 Ball ball = new Ball(colors[colorSelector]);
                 cell.setBall(ball);
                 balls.add(ball);
             } else {
-                throw new IllegalArgumentException("Cell is not empty!");
+                return false;
             }
         }
 
@@ -122,69 +123,56 @@ public class GameField {
 
     /* --------------------------- Ball set ------------------------------ */
 
-    private void ballSet(Ball ball, ArrayList <Ball> group){
+    private void createBallSet(Ball ball, ArrayList <Ball> group){
         Ball b;
 
         group.add(ball);
         b = ball.getCurrentCell().getNeighbor(Direction.EAST).getBall();
 
         if (b != null && b.getColor().equals(ball.getColor()) && !group.contains(b))
-            ballSet(b, group);
+            createBallSet(b, group);
 
         b = ball.getCurrentCell().getNeighbor(Direction.WEST).getBall();
 
         if (b != null && b.getColor().equals(ball.getColor()) && !group.contains(b))
-            ballSet(b, group);
+            createBallSet(b, group);
 
         b = ball.getCurrentCell().getNeighbor(Direction.NORTH).getBall();
 
         if (b != null && b.getColor().equals(ball.getColor()) && !group.contains(b))
-            ballSet(b, group);
+            createBallSet(b, group);
 
         b = ball.getCurrentCell().getNeighbor(Direction.SOUTH).getBall();
 
         if (b != null && b.getColor().equals(ball.getColor()) && !group.contains(b))
-            ballSet(b, group);
+            createBallSet(b, group);
 
     }
 
     public ArrayList <Ball> getBallSet (Ball ball) {
         ArrayList <Ball> set = new ArrayList<>();
-        ballSet(ball, set);
+        createBallSet(ball, set);
 
-        if (set.size() >= 3 && set.size() <= 10) {
+        if (set.size() >= 3) {
             return set;
         }
         return null;
     }
 
-    public boolean deleteBallSet (Ball ball) {
-        ArrayList <Ball> set = getBallSet(ball);
-        ArrayList <Ball> fallingBalls = null;
+    public boolean deleteBallSet (ArrayList <Ball> set) {
         if (set != null){
-            score += set.size();
-            setScore(score);
             for (Ball b : set){
-                Ball fallingBall = b.getCurrentCell().getNeighbor(Direction.NORTH).getBall();
-                fallingBalls.add(fallingBall);
                 b.getCurrentCell().removeBall();
             }
             balls.removeAll(set);
-            if(fallingBalls != null){takeBallsDown(fallingBalls);}
+            //takeBallsDown();
             return true;
         }
         return false;
     }
 
-    public void takeBallsDown( ArrayList <Ball> fallingBalls){
-
-        for (Ball fallingBall : fallingBalls){
-            while (fallingBall.getCurrentCell().getNeighbor(Direction.EAST).isEmpty()){
-                fallingBall.move(Direction.EAST);
-            }
-        }
-
-/*      for (int row = 0; row < height; row++) {
+    public void takeBallsDown(){
+         for (int row = 0; row < height; row++) {
             for(int column = 0; column < width; column++){
                 Cell cell = getCell(row, column);
                 Cell belowCell = cell.getNeighbor(Direction.SOUTH);
@@ -192,6 +180,6 @@ public class GameField {
                     cell.getBall().move(Direction.SOUTH);
                 }
             }
-        } */
+        }
     }
 }

@@ -1,5 +1,6 @@
 package BallsGame;
 
+import BallsGame.event.BallActionListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -67,14 +68,32 @@ public class Ball {
             throw new IllegalArgumentException("There is no cell to remove ball from");
         }
 
-            Cell cell = currentCell;
+        Cell cell = currentCell;
 
-            currentCell = null;
+        currentCell = null;
 
-            if (cell.getBall() != null) {
-                cell.removeBall();
+        if (cell.getBall() != null) {
+            cell.removeBall();
 
-            }
+        }
 
+    }
+
+    /* -------------------- Events ------------------------ */
+    ArrayList<BallActionListener> listeners = new ArrayList<>();
+
+    void addListener(BallActionListener listener)
+    {
+        if (listener == null)
+        {
+            throw new IllegalArgumentException();
+        }
+
+        listeners.add(listener);
+    }
+
+    void removeListener(BallActionListener listener)
+    {
+        listeners.remove(listener);
     }
 }

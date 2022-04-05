@@ -1,7 +1,6 @@
 package BallsGame;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -24,11 +23,11 @@ public class BallTest {
         ball.putInCell(cell);
 
         Assertions.assertEquals(cell, ball.getCurrentCell());
+        Assertions.assertEquals(ball, cell.getBall());
     }
 
     @Test
     void getCurrentCellNull(){
-        Cell cell = new Cell(new CellPosition(1, 1));
         Ball ball = new Ball(Color.blue);
 
         Assertions.assertNull(ball.getCurrentCell());
@@ -102,16 +101,11 @@ public class BallTest {
 
     @Test
     void moveTest(){
-        Cell centralCell = new Cell(new CellPosition(1, 1));
-        Cell westNeighbor = new Cell(new CellPosition(0, 1));
-        Cell eastNeighbor = new Cell(new CellPosition(2, 1));
-        Cell northNeighbor = new Cell(new CellPosition(1, 0));
-        Cell southNeighbor = new Cell(new CellPosition(1, 2));
+        GameField field = new GameField();
 
-        centralCell.setNeighbor(westNeighbor, Direction.WEST);
-        centralCell.setNeighbor(eastNeighbor, Direction.EAST);
-        centralCell.setNeighbor(northNeighbor, Direction.NORTH);
-        centralCell.setNeighbor(southNeighbor, Direction.SOUTH);
+        Cell centralCell = field.getCell(1, 1);
+        Cell eastNeighbor = field.getCell(2, 1);
+
 
         Ball ball = new Ball(Color.blue);
         centralCell.setBall(ball);
@@ -125,16 +119,10 @@ public class BallTest {
 
     @Test
     void moveToNonEmptyCell(){
-        Cell centralCell = new Cell(new CellPosition(1, 1));
-        Cell westNeighbor = new Cell(new CellPosition(0, 1));
-        Cell eastNeighbor = new Cell(new CellPosition(2, 1));
-        Cell northNeighbor = new Cell(new CellPosition(1, 0));
-        Cell southNeighbor = new Cell(new CellPosition(1, 2));
+        GameField field = new GameField();
 
-        centralCell.setNeighbor(westNeighbor, Direction.WEST);
-        centralCell.setNeighbor(eastNeighbor, Direction.EAST);
-        centralCell.setNeighbor(northNeighbor, Direction.NORTH);
-        centralCell.setNeighbor(southNeighbor, Direction.SOUTH);
+        Cell centralCell = field.getCell(1, 1);
+        Cell eastNeighbor = field.getCell(2, 1);
 
         Ball ball = new Ball(Color.blue);
         Ball anotherBall = new Ball(Color.RED);
