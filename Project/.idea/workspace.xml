@@ -2,27 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f1ab5f8-9788-46ab-88f7-e7a4324c8dde" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BallsGame/event/BallActionEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BallsGame/event/BallActionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BallsGame/CellTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/BallsGame/GameFieldTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Diagrams.asta" beforeDir="false" afterPath="$PROJECT_DIR$/../Diagrams.asta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/Ball.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/Ball.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/CellPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/CellPosition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/GameField.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/GameField.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/OOP_BallsGame/BallsGame/BallTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/OOP_BallsGame/BallsGame/BallTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/event/BallActionEvent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP_BallsGame/BallsGame/event/BallActionListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/OOP_BallsGame/BallsGame/GameFieldTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/OOP_BallsGame/BallsGame/GameFieldTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/Ball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BallsGame/Ball.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BallsGame/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/CellPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BallsGame/CellPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BallsGame/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/GameField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BallsGame/GameField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BallsGame/BallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BallsGame/BallTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/event/BallActionEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BallsGame/event/BallActionListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BallsGame/GameFieldTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BallsGame/GameFieldTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -50,12 +53,28 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/04_MyWidget_RequestFocus_01" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="JUnit.GameFieldTest.createNewLineNonEmptyRow">
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BallsGame.Game" />
+      <module name="OOP_BallsGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BallsGame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <module name="OOP_BallsGame" />
       <method v="2">
@@ -70,59 +89,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameFieldTest.createNewLineNonEmptyRow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OOP_BallsGame" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="BallsGame.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="BallsGame" />
-      <option name="MAIN_CLASS_NAME" value="BallsGame.GameFieldTest" />
-      <option name="METHOD_NAME" value="createNewLineNonEmptyRow" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameFieldTest.deleteBallSetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OOP_BallsGame" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="BallsGame.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="BallsGame" />
-      <option name="MAIN_CLASS_NAME" value="BallsGame.GameFieldTest" />
-      <option name="METHOD_NAME" value="deleteBallSetTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameFieldTest.getBallSetNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OOP_BallsGame" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="BallsGame.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="BallsGame" />
-      <option name="MAIN_CLASS_NAME" value="BallsGame.GameFieldTest" />
-      <option name="METHOD_NAME" value="getBallSetNull" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GameFieldTest.getBallSetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OOP_BallsGame" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="BallsGame.*" />
+          <option name="PATTERN" value="BallsGame.Game" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,21 +105,53 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GameFieldTest.isGameOverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_BallsGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BallsGame.Game" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="BallsGame" />
+      <option name="MAIN_CLASS_NAME" value="BallsGame.GameFieldTest" />
+      <option name="METHOD_NAME" value="isGameOverTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameFieldTest.isGameOverTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OOP_BallsGame" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BallsGame.Game" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="BallsGame" />
+      <option name="MAIN_CLASS_NAME" value="BallsGame.GameFieldTest" />
+      <option name="METHOD_NAME" value="isGameOverTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Unnamed" />
-      <item itemvalue="JUnit.GameFieldTest.createNewLineNonEmptyRow" />
       <item itemvalue="JUnit.All in OOP_BallsGame" />
+      <item itemvalue="JUnit.GameFieldTest.isGameOverTest" />
+      <item itemvalue="JUnit.GameFieldTest.isGameOverTrue" />
       <item itemvalue="JUnit.GameFieldTest.getBallSetTest" />
-      <item itemvalue="JUnit.GameFieldTest.getBallSetNull" />
-      <item itemvalue="JUnit.GameFieldTest.deleteBallSetTest" />
+      <item itemvalue="Application.Game" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GameFieldTest.createNewLineNonEmptyRow" />
-        <item itemvalue="JUnit.GameFieldTest.deleteBallSetTest" />
-        <item itemvalue="JUnit.GameFieldTest.getBallSetNull" />
-        <item itemvalue="JUnit.GameFieldTest.getBallSetTest" />
+        <item itemvalue="Application.Game" />
         <item itemvalue="JUnit.All in OOP_BallsGame" />
+        <item itemvalue="JUnit.GameFieldTest.getBallSetTest" />
+        <item itemvalue="JUnit.GameFieldTest.isGameOverTrue" />
+        <item itemvalue="JUnit.GameFieldTest.isGameOverTest" />
       </list>
     </recent_temporary>
   </component>
@@ -179,6 +182,10 @@
     <SUITE FILE_PATH="coverage/OOP_BallsGame$BallTest_getCurrentCell.ic" NAME="BallTest.getCurrentCell Coverage Results" MODIFIED="1649066086353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>BallsGame.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_BallsGame$GameFieldTest_initialization.ic" NAME="GameFieldTest.initialization Coverage Results" MODIFIED="1649204924791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>BallsGame.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/OOP_BallsGame$All_in_OOP_BallsGame.ic" NAME="All in OOP_BallsGame Coverage Results" MODIFIED="1649298772030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/OOP_BallsGame$GameFieldTest_getNeighborTest.ic" NAME="GameFieldTest.getNeighborTest Coverage Results" MODIFIED="1649073807991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>BallsGame.*</FILTER>
     </SUITE>

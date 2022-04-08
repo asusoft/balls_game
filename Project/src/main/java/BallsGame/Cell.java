@@ -52,7 +52,7 @@ public class Cell {
         if (ball == null || (ball.getCurrentCell() != null && ball.getCurrentCell() != this)
                 || storedBall != null)
         {
-            throw new IllegalArgumentException("Illegal ball!");
+            throw new IllegalArgumentException("Illegal ball or cell already has a ball in it!");
         }
 
         storedBall = ball;

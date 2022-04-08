@@ -1,17 +1,26 @@
 package BallsGame;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Random;
 
 public class GameFieldTest {
     final int STANDARD_FIELD_HEIGHT = 20;
     final int STANDARD_FIELD_WIDTH = 10;
+
+    @Test
+    void initialization(){
+        GameField field = new GameField();
+
+        Assertions.assertNotNull(field.getCell(0, 0));
+        Assertions.assertNotNull(field.getCell(7, 16));
+        Assertions.assertNotNull(field.getCell(9, 19));
+
+        Assertions.assertNull(field.getCell(11, 21));
+    }
     @Test
     void getNeighborTest(){
 
@@ -41,11 +50,11 @@ public class GameFieldTest {
     }
 
     @Test
-    void createNewLineTest(){
+    void createLineTest(){
         GameField field = new GameField();
         int row = 4;
 
-        Assertions.assertTrue(field.createNewLine(row));
+        Assertions.assertTrue(field.createLine(row));
 
         for(int x = 0; x < field.Width(); ++x){
             Assertions.assertFalse(field.getCell(x, row).isEmpty());
@@ -54,12 +63,12 @@ public class GameFieldTest {
     }
 
     @Test
-    void createNewLineNonEmptyRow(){
+    void createLineNonEmptyRow(){
         GameField field = new GameField();
         field.fillCells();
         int row = field.Height() - 1;
 
-        Assertions.assertFalse(field.createNewLine(row));
+        Assertions.assertFalse(field.createLine(row));
     }
 
     @Test
@@ -90,8 +99,6 @@ public class GameFieldTest {
         newCell3.setBall(newBall3);
         newCell4.setBall(newBall4);
         newCell5.setBall(newBall5);
-
-
 
         ArrayList <Ball> set = field.getBallSet(targetBall);
 
@@ -136,9 +143,111 @@ public class GameFieldTest {
     }
 
     @Test
+    void fillCellsTest(){
+        GameField field = new GameField();
+
+        Assertions.assertEquals(0, field.balls().size());
+
+        field.fillCells();
+
+        Assertions.assertEquals(50, field.balls().size());
+
+        for(int row = 15; row < STANDARD_FIELD_HEIGHT; ++row){
+            for(int column = 0; column < STANDARD_FIELD_WIDTH; ++column){
+                Cell cell = field.getCell(column, row);
+                Assertions.assertFalse(cell.isEmpty());
+            }
+        }
+    }
+
+    @Test
+    void createNewLineTest(){
+        GameField field = new GameField();
+
+        field.fillCells();
+
+        Assertions.assertEquals(50, field.balls().size());
+
+        for(int column = 0; column < STANDARD_FIELD_WIDTH; ++column){
+            Cell cell = field.getCell(column, 14);
+            Assertions.assertTrue(cell.isEmpty());
+        }
+
+        field.createNewLine();
+
+        Assertions.assertEquals(60, field.balls().size());
+
+        for(int column = 0; column < STANDARD_FIELD_WIDTH; ++column){
+            Cell cell = field.getCell(column, 14);
+            Assertions.assertFalse(cell.isEmpty());
+        }
+    }
+
+    @Test
+    void createNewLineNotPossible(){
+        GameField field = new GameField();
+        Random random = new Random();
+        Color colors[] = { Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE };
+        int colorSelector = random.nextInt(colors.length);
+
+
+        for(int row = 0; row < STANDARD_FIELD_HEIGHT; ++row){
+            for(int column = 0; column < STANDARD_FIELD_WIDTH; ++column){
+                Cell cell = field.getCell(column, row);
+
+                Ball ball = new Ball(colors[colorSelector]);
+
+                cell.setBall(ball);
+                field.balls().add(ball);
+            }
+        }
+        Assertions.assertEquals(200, field.balls().size());
+        Assertions.assertFalse(field.createNewLine());
+        field.createNewLine();
+        Assertions.assertEquals(200, field.balls().size());
+    }
+
+    @Test
+    void isGameOverTrue(){
+        GameField field = new GameField();
+        Random random = new Random();
+        Color colors[] = { Color.BLUE, Color.GREEN, Color.YELLOW, Color.RED, Color.WHITE };
+        int colorSelector = random.nextInt(colors.length);
+
+
+        for(int row = 0; row < STANDARD_FIELD_HEIGHT; ++row){
+            for(int column = 0; column < STANDARD_FIELD_WIDTH; ++column){
+                Cell cell = field.getCell(column, row);
+
+                Ball ball = new Ball(colors[colorSelector]);
+
+                cell.setBall(ball);
+                field.balls().add(ball);
+            }
+        }
+
+        Assertions.assertTrue(field.isGameOver());
+    }
+
+    @Test
+    void isGameOverFalse(){
+        GameField field = new GameField();
+        field.fillCells();
+
+        Assertions.assertFalse(field.isGameOver());
+    }
+
+    @Test
     void deleteBallSetTest(){
         GameField field = new GameField();
-        ArrayList <Ball> balls = field.balls();
+        for(int row = 15; row < STANDARD_FIELD_HEIGHT; ++row){
+            for(int column = 0; column < STANDARD_FIELD_WIDTH; ++column){
+                Cell cell = field.getCell(column, row);
+                Ball ball = new Ball(Color.WHITE);
+                cell.setBall(ball);
+                field.balls().add(ball);
+            }
+        }
 
         Cell targetCell = field.getCell(6,17);
         Cell newCell1 = targetCell.getNeighbor(Direction.NORTH);
@@ -146,52 +255,43 @@ public class GameFieldTest {
         Cell newCell3 = targetCell.getNeighbor(Direction.EAST);
         Cell newCell4 = newCell3.getNeighbor(Direction.SOUTH);
 
-        Cell newCell5 = targetCell.getNeighbor(Direction.WEST);
+        field.balls().remove(targetCell.getBall());
+        field.balls().remove(newCell1.getBall());
+        field.balls().remove(newCell2.getBall());
+        field.balls().remove(newCell3.getBall());
+        field.balls().remove(newCell4.getBall());
+
+        targetCell.removeBall();
+        newCell1.removeBall();
+        newCell2.removeBall();
+        newCell3.removeBall();
+        newCell4.removeBall();
 
         Ball targetBall = new Ball(Color.blue);
         Ball newBall1 = new Ball(Color.blue);
         Ball newBall2 = new Ball(Color.blue);
         Ball newBall3 = new Ball(Color.blue);
         Ball newBall4 = new Ball(Color.blue);
-        Ball newBall5 = new Ball(Color.red);
-
-        balls.add(targetBall);
-        balls.add(newBall1);
-        balls.add(newBall2);
-        balls.add(newBall3);
-        balls.add(newBall4);
-        balls.add(newBall5);
-
-        Assertions.assertTrue(balls.contains(targetBall));
-        Assertions.assertTrue(balls.contains(newBall1));
-        Assertions.assertTrue(balls.contains(newBall2));
-        Assertions.assertTrue(balls.contains(newBall3));
-        Assertions.assertTrue(balls.contains(newBall4));
-        Assertions.assertTrue(balls.contains(newBall5));
 
         targetCell.setBall(targetBall);
         newCell1.setBall(newBall1);
         newCell2.setBall(newBall2);
         newCell3.setBall(newBall3);
         newCell4.setBall(newBall4);
-        newCell5.setBall(newBall5);
+
+        field.balls().add(targetBall);
+        field.balls().add(newBall1);
+        field.balls().add(newBall2);
+        field.balls().add(newBall3);
+        field.balls().add(newBall4);
 
         ArrayList <Ball> set = field.getBallSet(targetBall);
 
-        field.deleteBallSet(set);
+        Assertions.assertEquals(5, set.size());
+        Assertions.assertTrue(field.deleteBallSet(set));
 
-        Assertions.assertNull(targetCell.getBall());
-        Assertions.assertNull(newCell1.getBall());
-        Assertions.assertNull(newCell2.getBall());
-        Assertions.assertNull(newCell3.getBall());
-        Assertions.assertNull(newCell4.getBall());
-
-        Assertions.assertFalse(balls.contains(targetBall));
-        Assertions.assertFalse(balls.contains(newBall1));
-        Assertions.assertFalse(balls.contains(newBall2));
-        Assertions.assertFalse(balls.contains(newBall3));
-        Assertions.assertFalse(balls.contains(newBall4));
-
-        Assertions.assertTrue(balls.contains(newBall5));
+        for(Ball ball : set){
+            Assertions.assertNull(ball.getCurrentCell());
+        }
     }
 }
